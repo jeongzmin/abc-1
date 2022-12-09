@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<springProfile name = "local">
+		<property resource="application-local.properties"></property>
+	</springProfile>
+
+	<!-- 로그패턴 1 -->    
+    <property name="LOG_PATTERN_NUM_01" value="%yellow(%d{HH:mm:ss.SSS}) [%cyan(%logger{0} : %line)] %logger{36} ::: %msg%n"/>
+    
+    <appender name="BASIC" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN_NUM_01}</pattern>
+        </encoder>
+    </appender>
+    
+    <springProfile name="local">
+	    <root level="DEBUG" >
+	        <appender-ref ref="BASIC"/>
+	    </root>
+	    <root level="INFO">
+	        <appender-ref ref="BASIC"/>
+	    </root>
+	    <root level="ERROR">
+	        <appender-ref ref="BASIC"/>
+	    </root>
+    </springProfile>
+    
+</configuration>
